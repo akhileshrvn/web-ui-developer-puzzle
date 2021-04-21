@@ -1,4 +1,4 @@
-import { $, browser, ExpectedConditions } from 'protractor';
+import { $, $$, browser, ExpectedConditions } from 'protractor';
 
 describe('When: I use the reading list feature', () => {
   it('Then: I should see my reading list', async () => {
@@ -16,5 +16,19 @@ describe('When: I use the reading list feature', () => {
         'My Reading List'
       )
     );
+  });
+
+  it('Then: I Should Add to reading list, and undo that action', async () => {
+    await browser.get('/');
+    await browser.wait(
+      ExpectedConditions.textToBePresentInElement($('tmo-root'), 'okreads')
+    );
+
+    const form = await $('form');
+    const input = await $('input[type="search"]');
+    await input.sendKeys('python');
+    await form.submit();
+
+    const items = await $$('[data-testing="book-item"]');
   });
 });
