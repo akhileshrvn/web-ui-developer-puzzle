@@ -32,6 +32,16 @@ export const removeFromReadingList = createAction(
   props<{ item: ReadingListItem }>()
 );
 
+export const markAsFinished = createAction(
+  '[Reading List] Mark as finished',
+  props<{ item: ReadingListItem }>()
+);
+
+export const undoFinish = createAction(
+  'Reading List] Undo toggled marked as finish',
+  props<{ item: ReadingListItem }>()
+);
+
 export const failedRemoveFromReadingList = createAction(
   '[Reading List API] Failed remove from list',
   props<{ item: ReadingListItem }>()

@@ -1,6 +1,16 @@
 <ng-container *ngIf="(readingList$ | async).length > 0; else empty">
   <div class="reading-list-item" *ngFor="let b of readingList$ | async">
     <div>
+      <button
+        mat-icon-button
+        [color]="b.finished ? 'success' : null"
+        [attr.aria-label]="'Mark ' + b.title + ' as read/finished'"
+        (click)="onToggledMarkedAsFinished(b)"
+      >
+        <mat-icon>{{ b.finished ? 'check_circle' : 'star_outline' }}</mat-icon>
+      </button>
+    </div>
+    <div>
       <img class="reading-list-item--cover" [src]="b.coverUrl" />
     </div>
     <div class="reading-list-item--details">
